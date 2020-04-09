@@ -1,13 +1,84 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Monotype Corsiva', 'Apple Chancery', 'ITC Zapf Chancery', 'URW Chancery L', cursive;
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+
+  background-image: url("./img/beer-garden.jpg"), linear-gradient(#FFD100, #FFD100);
+  background-blend-mode: overlay;
+  background-size: cover;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h2 {
+  text-align: left;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menuContainer {
+  flex: 1;
+  /*width: 40%;*/
+  margin: 20px 40px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+
+  height: 400px;
+  padding: 20px;
+
+  flex-wrap: wrap;
+  text-align: center;
+  text-overflow: ellipsis;
+  line-height: 2.5em;
+
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.menu a {
+  color: #FFD100;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.favoritesContainer {
+  flex: 1;
+  margin: 20px 40px;
+}
+
+.favorites {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+
+  height: 400px;
+  padding: 20px;
+
+  flex-wrap: wrap;
+  text-align: center;
+  text-overflow: ellipsis;
+  line-height: 2.5em;
+
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.beer-details {
+  background-color: white;
+  width: 500px;
+  padding: 10px;
+}
+
+.beer-details img {
+  width: 100px;
 }

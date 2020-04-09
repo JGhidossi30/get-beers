@@ -1,22 +1,55 @@
 import React from 'react';
 import axios from 'axios';
+import {
+    Link,
+    Route,
+    BrowserRouter,
+    Switch
+} from 'react-router-dom';
+import Details from './Details';
 
-const HomePage = () => (
-    <>
-        <h1>The Beer Garden</h1>
-        <LoadBeers/>
-    </>
-);
+export default class extends React.Component {
+    state = {
+        beers: []
+    }
 
-const LoadBeers = () => axios.get('https://api.punkapi.com/v2/beers')
-	.then(function (res) {
-		console.log(res.data);
-		return <div>
-				{res.data.map((value, index) => {
-					return <h1 key={index}>{value}</h1>
-				})}
-			</div>;
-	})
-	.catch(error => console.error(error));
+    componentDidMount() {
+        axios.get('https://api.punkapi.com/v2/beers')
+            .then(res => {
+                const beers = res.data;
+                this.setState({beers: beers});
+            })
+            .catch(err => console.log(err));
+    }
 
-export default HomePage;
+    render() {
+        return (
+            <>
+                <h1>The Beer Garden</h1>
+                <div className="container">
+                    <div className="menuContainer">
+                        <h2>Menu</h2>
+                        <div className="menu">
+                            <BrowserRouter>
+                                {this.state.beers.map(beer =>
+                                    <Link to={"/" + beer.name}>
+                                        {beer.name}<br/>
+                                    </Link>
+                                )}
+                                <Switch>
+                                    <Route path="/:beer" component={Details}/>
+                                </Switch>
+                            </BrowserRouter>
+                        </div>
+                    </div>
+                    <div className="favoritesContainer">
+                        <h2>Favorites</h2>
+                        <div className="favorites">
+                            Hi
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+}
