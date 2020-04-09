@@ -1,19 +1,19 @@
-var Favorites = (function() {
+var Favorite = (function () {
     var beers = [];
 
-    var getBeers = function() {
+    var getBeers = function () {
         return beers;
     };
 
-    var hasBeer = function(beer) {
+    var hasBeer = function (beer) {
         return beers.includes(beer)
     }
 
-    var addBeer = function(beer) {
-        beers.add(beer);
+    var addBeer = function (beer) {
+        beers.push(beer);
     };
 
-    var removeBeer = function(beer) {
+    var removeBeer = function (beer) {
         for (var i = 0; i < beers.length; i++) {
             if (beers[i] === beer) {
                 beers.splice(i, 1);
@@ -30,4 +30,4 @@ var Favorites = (function() {
 
 })();
 
-export default Favorites;
+export default Favorite;

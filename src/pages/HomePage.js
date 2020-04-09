@@ -7,10 +7,14 @@ import {
     Switch
 } from 'react-router-dom';
 import Details from './Details';
+import Favorite from "../models/Favorite";
+import Menu from "../components/Menu";
+import Favorites from "../components/Favorites";
 
 export default class extends React.Component {
     state = {
-        beers: []
+        beers: [],
+        favorites: []
     }
 
     componentDidMount() {
@@ -20,6 +24,9 @@ export default class extends React.Component {
                 this.setState({beers: beers});
             })
             .catch(err => console.log(err));
+        const favorites = Favorite.getBeers()
+        this.setState({favorites})
+        console.log(favorites);
     }
 
     render() {
@@ -29,24 +36,11 @@ export default class extends React.Component {
                 <div className="container">
                     <div className="menuContainer">
                         <h2>Menu</h2>
-                        <div className="menu">
-                            <BrowserRouter>
-                                {this.state.beers.map(beer =>
-                                    <Link to={"/" + beer.name}>
-                                        {beer.name}<br/>
-                                    </Link>
-                                )}
-                                <Switch>
-                                    <Route path="/:beer" component={Details}/>
-                                </Switch>
-                            </BrowserRouter>
-                        </div>
+                        <Menu beers={this.state.beers}/>
                     </div>
                     <div className="favoritesContainer">
                         <h2>Favorites</h2>
-                        <div className="favorites">
-                            Hi
-                        </div>
+                        <Favorites favorites={this.state.favorites}/>
                     </div>
                 </div>
             </>
