@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import NotFound from "./NotFound";
+import './Details.css';
 
 export default class Details extends React.Component {
     constructor(props) {
@@ -15,12 +17,14 @@ export default class Details extends React.Component {
             .then(res => {
                 const details = res.data[0];
                 this.setState({details: details});
-                console.log(this.state.details);
             })
             .catch(err => console.log(err));
     }
 
     render() {
+        if (this.state.details === undefined || this.state.details.length == 0) {
+            return <NotFound page={this.state.beer}/>
+        }
         return (
             <>
                 <div className="beer-details">

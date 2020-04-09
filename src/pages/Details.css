@@ -1,0 +1,9 @@
+.beer-details {
+    background-color: white;
+    width: 500px;
+    padding: 10px;
+}
+
+.beer-details img {
+    width: 100px;
+}

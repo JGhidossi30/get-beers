@@ -1,0 +1,12 @@
+.not-found {
+    background: rgba(0, 0, 0, 0.75);
+    height: 100vh;
+    display: flex;
+    margin: auto;
+}
+
+.not-found h1 {
+    color: #FFD100;
+    margin: auto;
+    text-align: center;
+}

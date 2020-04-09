@@ -1,0 +1,22 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
+    /*flex-grow: 1;*/
+    /*height: 100%;*/
+    padding: 40px;
+
+    flex-wrap: wrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    line-height: 2.75em;
+
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.menu a {
+    color: #FFD100;
+    font-size: 1.1em;
+    text-decoration: none;
+}

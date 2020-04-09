@@ -1,15 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import {
-    Link,
-    Route,
-    BrowserRouter,
-    Switch
-} from 'react-router-dom';
-import Details from './Details';
 import Favorite from "../models/Favorite";
 import Menu from "../components/Menu";
 import Favorites from "../components/Favorites";
+import './Home.css';
 
 export default class extends React.Component {
     state = {
