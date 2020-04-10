@@ -1,15 +1,25 @@
+h2 {
+    text-align: left;
+}
+
 .container {
     display: flex;
+    height: calc(100vh - 75px);
+    overflow: hidden;
     justify-content: space-between;
-    /*flex-grow: 1;*/
+    font-size: .9em;
 }
 
 .menuContainer {
     flex: 3;
-    margin: 20px 20px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 40px 40px;
 }
 
 .favoritesContainer {
     flex: 1;
-    margin: 20px 40px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px 40px 20px;
 }

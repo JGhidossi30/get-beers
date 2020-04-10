@@ -1,9 +1,37 @@
 .beer-details {
-    background-color: white;
-    width: 500px;
-    padding: 10px;
+    flex: 0;
+    color: #FFD100;
+    background: linear-gradient(to right, rgba(255, 255, 255, 5), rgba(0, 0, 0, .75) 40%);
+    display: flex;
+    overflow: hidden;
 }
 
-.beer-details img {
+.beer {
+    flex: 1;
+    display: grid;
+    font-size: 2em;
+    font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    padding: 40px;
+}
+
+#beer {
+    height: 300px;
+}
+
+#fav {
     width: 100px;
+    height: 100px;
+}
+
+#fav:hover {
+    cursor: pointer;
+}
+
+.details {
+    flex: 3;
+    padding: 40px;
+    text-align: left;
 }

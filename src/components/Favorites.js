@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import './Favorites.css';
 
 const Favorites = ({favorites}) => {
+    console.log(favorites);
     return (
         <>
             <div className="favorites">
