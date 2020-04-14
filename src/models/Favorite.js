@@ -1,20 +1,20 @@
-var Favorite = (function () {
-    var beers = [];
+const Favorite = (function () {
+    const beers = [];
 
-    var getBeers = function () {
+    const getBeers = function () {
         return beers;
     };
 
-    var hasBeer = function (beer) {
+    const hasBeer = function (beer) {
         return beers.includes(beer)
     }
 
-    var addBeer = function (beer) {
+    const addBeer = function (beer) {
         beers.push(beer);
     };
 
-    var removeBeer = function (beer) {
-        for (var i = 0; i < beers.length; i++) {
+    const removeBeer = function (beer) {
+        for (let i = 0; i < beers.length; i++) {
             if (beers[i] === beer) {
                 beers.splice(i, 1);
             }

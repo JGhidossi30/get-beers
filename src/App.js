@@ -6,14 +6,17 @@ import {
 import Home from './pages/Home';
 import NotFound from "./pages/NotFound";
 import './App.css';
+import Title from "./components/Title";
+import Details from "./pages/Details";
 
 function App() {
     return (
         <Router>
             <div className="App">
+                <Title/>
                 <Switch>
                     <Route path="/" component={Home} exact/>
-                    <Route path="/#:beer" component={Home}/>
+                    <Route path="/details/:beer" component={Details}/>
                     <Route component={() => <NotFound page="Page"/>}/>
                 </Switch>
             </div>

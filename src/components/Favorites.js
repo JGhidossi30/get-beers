@@ -3,16 +3,17 @@ import {Link} from "react-router-dom";
 import './Favorites.css';
 
 const Favorites = ({favorites}) => {
-    console.log(favorites);
     return (
         <>
             <div className="favorites">
                 {
-                    favorites.map(favorite =>
-                        <Link>
-                            {favorite}<br/>
-                        </Link>
-                    )}
+                    favorites
+                        .sort((a, b) => a.localeCompare(b))
+                        .map((favorite, key) =>
+                            <Link to={"/details/" + encodeURIComponent(favorite)} key={key}>
+                                {favorite}
+                            </Link>
+                        )}
             </div>
         </>
     );

@@ -1,31 +1,17 @@
 import React from "react";
-import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
-import Details from "../pages/Details";
+import {Link} from "react-router-dom";
 import './Menu.css';
-import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-const Menu = ({beers}) => {
-    return (
-        <>
-            <div className="menu">
-
-                    {beers.map(beer =>
-                        <Link to={"/#" + beer.name}>
-                            {beer.name}<br/>
-                        </Link>
-                    )}
-                {/*<SwitchTransition className="body-page"*/}
-                {/*                  transitionName="test"*/}
-                {/*                  transitionEnterTimeout={500}*/}
-                {/*                  transitionLeaveTimeout={300}>*/}
-                <SwitchTransition>
-                    <CSSTransition timeout={300} classNames='fade'>
-                        <Route path="/#:beer" component={Details}/>
-                    </CSSTransition>
-                </SwitchTransition>
-            </div>
-        </>
-    );
-}
+const Menu = ({beers}) => (
+    <>
+        <div className="menu">
+            {beers.map((beer, key) =>
+                <Link to={"/details/" + encodeURIComponent(beer.name)} key={key}>
+                    {beer.name}
+                </Link>
+            )}
+        </div>
+    </>
+);
 
 export default Menu;

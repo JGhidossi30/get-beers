@@ -1,12 +1,9 @@
-h2 {
-    text-align: left;
-}
-
 .container {
     display: flex;
-    height: calc(100vh - 75px);
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
     justify-content: space-between;
+    overflow: hidden;
     font-size: .9em;
 }
 
