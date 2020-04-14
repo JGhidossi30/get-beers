@@ -45,6 +45,7 @@
 
 b {
     color: #FFD100;
+    font-size: 1.2em;
 }
 
 .details {
@@ -52,4 +53,5 @@ b {
     padding: 40px;
     text-align: left;
     color: white;
+    font-size: .75em;
 }

@@ -64,6 +64,53 @@ export default class Details extends React.Component {
         for (const x in details.boil_volume) {
             boil_volume += details.boil_volume[x] + " ";
         }
+        let method = "";
+        for (const x in details.method) {
+            switch (x) {
+                case "mash_temp":
+                    method += "Mash Temp (";
+                    for (const y in details.method[x]) {
+                        method += details.method[x][y].duration + " @ ";
+                        for (const z in details.method[x][y].temp) {
+                            method += details.method[x][y].temp[z] + " ";
+                        }
+                        method = method.substr(0, method.length - 1) + "), ";
+                    }
+                    break;
+                case "fermentation":
+                    method += "Fermentation (";
+                    for (const z in details.method[x].temp) {
+                        method += details.method[x].temp[z] + " ";
+                    }
+                    method = method.substr(0, method.length - 1) + "), ";
+                    break;
+                case "twist":
+                    method += "Twist: " + details.method[x];
+                    break;
+                default:
+                    break;
+            }
+        }
+        let ingredients = "";
+        for (const x in details.ingredients) {
+            ingredients += x.charAt(0).toUpperCase() + x.substr(1, x.length - 1) + " (";
+            if (x === "yeast") {
+                ingredients += details.ingredients[x];
+            } else {
+                for (const y in details.ingredients[x]) {
+                    ingredients += details.ingredients[x][y].name + " ";
+                    for (const z in details.ingredients[x][y].amount) {
+                        ingredients += details.ingredients[x][y].amount[z] + " ";
+                    }
+                    ingredients = ingredients.substr(0, ingredients.length - 1) + ", ";
+                }
+            }
+            ingredients += "), ";
+        }
+        let food_pairing = "";
+        for (const x in details.food_pairing) {
+            food_pairing += details.food_pairing[x] + ", ";
+        }
         return (
             <>
                 <div className="beer-details">
@@ -90,136 +137,15 @@ export default class Details extends React.Component {
                         <b>SRM: </b>{details.srm} <br/>
                         <b>pH: </b>{details.ph} <br/>
                         <b>Attenuation Level: </b>{details.attenuation_level} <br/>
-                        <b>Volume: </b>{volume} <br />
-                        <b>Boil Volume: </b>{boil_volume} <br />
-                        <b>Method: </b> <br/>
+                        <b>Volume: </b>{volume} <br/>
+                        <b>Boil Volume: </b>{boil_volume} <br/>
+                        <b>Method: </b>{method.substr(0, method.length - 2)} <br/>
+                        <b>Ingredients: </b>{ingredients.substr(0, ingredients.length - 2)} <br/>
+                        <b>Food Pairing: </b>{food_pairing.substr(0, food_pairing.length - 2)} <br/>
+                        <b>Brewer's Tips: </b>{details.brewers_tips}
                     </div>
                 </div>
             </>
         );
     }
 }
-
-// const Details = () => (
-//     <>
-//         <div className="beer-details">
-//             <div className="beer">
-//                 <div>
-//                     {"hii"}
-//                     {/*{getBeer(beers)} <br/>*/}
-//                 </div>
-//                 <div>
-//                     {/*<img src={""this.state.details.image_url""} id="beer"/> <br/>*/}
-//                 </div>
-//                 <div>
-//                     {/*<this.Fav/>*/}
-//                 </div>
-//             </div>
-//             {/*<div className="details">*/}
-//             {/*    Tagline: {this.state.details.tagline} <br/>*/}
-//             {/*    First Brewed: {this.state.details.first_brewed} <br/>*/}
-//             {/*    Description: {this.state.details.description} <br/>*/}
-//             {/*    Abbreviation: {this.state.details.abv} <br/>*/}
-//             {/*    IBU: {this.state.details.ibu} <br/>*/}
-//             {/*    Target FG: {this.state.details.target_fg} <br/>*/}
-//             {/*    Target OG: {this.state.details.target_og} <br/>*/}
-//             {/*    EBC: {this.state.details.ebc} <br/>*/}
-//             {/*    SRM: {this.state.details.srm} <br/>*/}
-//             {/*    pH: {this.state.details.ph} <br/>*/}
-//             {/*    Attenuation Level: {this.state.details.attenuation_level} <br/>*/}
-//             {/*    /!*Volume: {this.state.details.volume.unit }*!/*/}
-//             {/*    /!*Volume: { this.state.details.volume.value } { this.state.details.volume.unit } <br />*!/*/}
-//             {/*    /!*Boil Volume: { this.state.details.boil_volume } <br />*!/*/}
-//             {/*    /!*Method <br />*!/*/}
-//
-//         </div>
-//     </>
-// );
-//
-// function getBeer(beers) {
-//     console.log(beers);
-//     return "";
-// }
-//
-// export default Details;
-
-// export default class Details extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             details: props.state.details,
-//             favorites: props.state.favorites,
-//             beer: props.state.beer
-//         };
-//     }
-//
-//     componentDidMount() {
-//         axios.get(`https://api.punkapi.com/v2/beers?beer_name=${this.state.beer}`)
-//             .then(res => {
-//                 const details = res.data[0];
-//                 this.setState({details: details});
-//             })
-//             .catch(err => console.log(err));
-//     }
-//
-//     render() {
-//         if (this.state.details === undefined || this.state.details.length === 0) {
-//             return <NotFound page={this.state.beer}/>
-//         }
-//         return (
-//             <>
-//                 <div className="beer-details view">
-//                     <div className="beer">
-//                         <div>
-//                             {this.state.details.name} <br/>
-//                         </div>
-//                         <div>
-//                             <img src={this.state.details.image_url} id="beer"/> <br/>
-//                         </div>
-//                         <div>
-//                             <this.Fav/>
-//                         </div>
-//                     </div>
-//                     <div className="details">
-//                         Tagline: {this.state.details.tagline} <br/>
-//                         First Brewed: {this.state.details.first_brewed} <br/>
-//                         Description: {this.state.details.description} <br/>
-//                         Abbreviation: {this.state.details.abv} <br/>
-//                         IBU: {this.state.details.ibu} <br/>
-//                         Target FG: {this.state.details.target_fg} <br/>
-//                         Target OG: {this.state.details.target_og} <br/>
-//                         EBC: {this.state.details.ebc} <br/>
-//                         SRM: {this.state.details.srm} <br/>
-//                         pH: {this.state.details.ph} <br/>
-//                         Attenuation Level: {this.state.details.attenuation_level} <br/>
-//                         {/*Volume: {this.state.details.volume.unit }*/}
-//                         {/*Volume: { this.state.details.volume.value } { this.state.details.volume.unit } <br />*/}
-//                         {/*Boil Volume: { this.state.details.boil_volume } <br />*/}
-//                         {/*Method <br />*/}
-//                     </div>
-//                 </div>
-//             </>
-//         );
-//     }
-//
-//     Fav = () => {
-//         return (
-//             <>
-//                 {Favorite.hasBeer(this.state.beer) ? "Unfavorite" : "Favorite"}
-//                 <img
-//                     src={Favorite.hasBeer(this.state.beer) ?
-//                         "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" :
-//                         "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-heart-outline-512.png"} id="fav" onClick={() => this.favClick()}/>
-//             </>
-//         );
-//     }
-//
-//     favClick = () => {
-//         if (Favorite.hasBeer(this.state.beer)) {
-//             Favorite.removeBeer(this.state.beer);
-//         } else {
-//         Favorite.addBeer(this.state.beer);
-//     }
-//      console.log(Favorite.getBeers()[0]);
-//     }
-// }
